@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "buy-and-hold-vs-arima"
+  site-url: "https://barakdiker123.github.io/buy-and-hold-vs-arima"
+  description: "buy and hold vs arima strategy"
+  repo-branch: development
+  repo-url: "https://github.com/barakdiker123/buy-and-hold-vs-arima"
