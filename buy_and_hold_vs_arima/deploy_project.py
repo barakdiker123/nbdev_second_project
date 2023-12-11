@@ -15,7 +15,7 @@ import plotly.express as px
 import pandas as pd
 import numpy as np
 
-# %% ../nbs/02_dash_example2.ipynb 4
+# %% ../nbs/02_dash_example2.ipynb 5
 companies = ['AMZN','NFLX','GOOG']
 tickers = [yf.Ticker(ticker).history( start='2021-12-10', end='2022-12-30')['High'].rename(ticker) for ticker in companies]
 
@@ -27,7 +27,7 @@ for a in df.columns:
     
 df[['AMZN','GOOG']]
 
-# %% ../nbs/02_dash_example2.ipynb 5
+# %% ../nbs/02_dash_example2.ipynb 6
 # http://127.0.0.1:8050/
 
 #df = px.data.gapminder()
@@ -81,8 +81,8 @@ def update_graph(country_chosen):
     dff = df[country_chosen]
     fig = px.line(
         dff,
-        x="Date[Days]",
-        y="Stock",
+        #x="Date[Days]",
+        #y="Stock[agora]",
         #color="country",
         #custom_data=["country", "continent", "lifeExp", "pop"],
     )
@@ -95,7 +95,7 @@ def update_graph(country_chosen):
 
 
 
-# %% ../nbs/02_dash_example2.ipynb 6
-#if __name__ == "__main__":
-#    app.run_server(debug=False)
+# %% ../nbs/02_dash_example2.ipynb 8
+if __name__ == "__main__":
+    app.run_server(debug=False)
 
