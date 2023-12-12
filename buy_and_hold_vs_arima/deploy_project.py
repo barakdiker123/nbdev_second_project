@@ -44,7 +44,6 @@ companies = [
     "MTRX.TA",
     "ALHE.TA",
     "UWAY.TA",
-    "TRAN.TA",
     "ICL.TA",
 ]
 
