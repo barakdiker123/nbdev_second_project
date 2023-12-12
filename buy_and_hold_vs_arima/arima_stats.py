@@ -5,7 +5,7 @@ __all__ = ['foo', 'say_hello', 'create_arima_prediction', 'create_auto_arima_pre
            'create_dataframe_with_series']
 
 # %% ../nbs/00_core.ipynb 4
-import torch
+#import torch
 import pandas as pd
 import numpy as np
 import pmdarima as pm
