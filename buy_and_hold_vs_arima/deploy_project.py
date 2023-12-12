@@ -17,8 +17,41 @@ import numpy as np
 import dash_bootstrap_components as dbc
 
 
-# %% ../nbs/02_dash_example2.ipynb 6
-companies = ['AMZN','NFLX','GOOG']
+# %% ../nbs/02_dash_example2.ipynb 7
+#companies = ['AMZN','NFLX','GOOG']
+companies = [
+    "LUMI.TA",
+    "DSCT.TA",
+    "BEZQ.TA",
+    "CEL.TA",
+    "ESLT.TA",
+    "NICE.TA",
+    "TEVA.TA",
+    "POLI.TA",
+    "MZTF.TA",
+    "FIBI.TA",
+    "HARL.TA",
+    "MGDL.TA",
+    "CLIS.TA",
+    "PHOE.TA",
+    "MMHD.TA",
+    "DRS.TA",
+    "BSEN.TA",
+    "HLAN.TA",
+    "FTAL.TA",
+    "DANE.TA",
+    "ONE.TA",
+    "MTRX.TA",
+    "ALHE.TA",
+    "UWAY.TA",
+    "TRAN.TA",
+    "ICL.TA",
+]
+
+#companies = companies + ticker_stocks
+
+
+
 tickers = [yf.Ticker(ticker).history( start='2021-12-10', end='2022-12-30')['High'].rename(ticker) for ticker in companies]
 df = pd.concat(tickers, axis=1)
 df
@@ -26,9 +59,9 @@ df
 for a in df.columns:
     print(a)
     
-df[['AMZN','GOOG']]
+df[['LUMI.TA','ICL.TA']]
 
-# %% ../nbs/02_dash_example2.ipynb 7
+# %% ../nbs/02_dash_example2.ipynb 8
 # http://127.0.0.1:8050/
 
 #df = px.data.gapminder()
@@ -41,9 +74,13 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 app.layout = html.Div(
     [
+        dcc.Markdown('''
+        # Comparing Arima model and Buy and Hold strategy
+        This is final project of master's degree written by yeshurun ben avraham 
+        '''),
         dcc.Dropdown(
             id="dpdn2",
-            value=["AMZN", "GOOG"],
+            value=["ICL.TA", "LUMI.TA"],
             multi=True,
             options=[{"label": x, "value": x} for x in df.columns],
         ),
@@ -201,7 +238,7 @@ def update_graph(country_chosen):
 
 
 
-# %% ../nbs/02_dash_example2.ipynb 9
+# %% ../nbs/02_dash_example2.ipynb 10
 if __name__ == "__main__":
     app.run_server(debug=False)
 

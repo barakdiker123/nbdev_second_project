@@ -4,7 +4,7 @@
 __all__ = ['foo', 'say_hello', 'create_arima_prediction', 'create_auto_arima_prediction', 'create_auto_arima_prediction_future_2',
            'create_dataframe_with_series']
 
-# %% ../nbs/00_core.ipynb 4
+# %% ../nbs/00_core.ipynb 5
 #import torch
 import pandas as pd
 import numpy as np
@@ -13,20 +13,20 @@ import yfinance as yf
 from statsmodels.tsa.arima.model import ARIMA
 
 
-# %% ../nbs/00_core.ipynb 5
+# %% ../nbs/00_core.ipynb 6
 def foo(name): 
     return "Hello HAHAHAH" + name
 
-# %% ../nbs/00_core.ipynb 6
+# %% ../nbs/00_core.ipynb 7
 def say_hello(to):
     "Say hello to somebody"
     return f'Hello {to}!'
 
-# %% ../nbs/00_core.ipynb 7
+# %% ../nbs/00_core.ipynb 8
 def create_arima_prediction(series):
     auto_arima = pm.auto_arima(series, stepwise=False, seasonal=False)
 
-# %% ../nbs/00_core.ipynb 11
+# %% ../nbs/00_core.ipynb 12
 def create_auto_arima_prediction(series_data, prediction_depth=30):
     """
     Given pandas series return a series with the same indexes (Dates)
@@ -68,14 +68,14 @@ def create_auto_arima_prediction(series_data, prediction_depth=30):
     return auto_pred
 
 
-# %% ../nbs/00_core.ipynb 12
+# %% ../nbs/00_core.ipynb 13
 def create_auto_arima_prediction_future_2(series_data,future=40):
     temp_series = pd.Series(series_data)
     temp_series=pd.concat([temp_series,pd.Series([None]*future , index=pd.date_range(series_data.index[-1], freq='D', periods=future))])
     auto_pred = create_auto_arima_prediction(temp_series,future)
     return auto_pred
 
-# %% ../nbs/00_core.ipynb 13
+# %% ../nbs/00_core.ipynb 14
 def create_dataframe_with_series(func , series_data):
     pred_series = func(series_data)
     df = pd.DataFrame()
