@@ -49,6 +49,8 @@ companies = [
     "ALHE.TA",
     "UWAY.TA",
     "ICL.TA",
+    "TA35.TA",
+    "TA90.TA",
 ]
 
 #companies = companies + ticker_stocks
