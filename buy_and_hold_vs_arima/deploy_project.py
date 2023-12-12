@@ -55,7 +55,7 @@ companies = [
 
 
 
-tickers = [yf.Ticker(ticker).history( start='2021-12-10', end='2022-12-30')['High'].rename(ticker) for ticker in companies]
+tickers = [yf.Ticker(ticker).history( start='2020-12-10')['High'].rename(ticker) for ticker in companies]
 df = pd.concat(tickers, axis=1)
 df
 
@@ -249,5 +249,7 @@ def run_server(port=8050):
 
 # %% ../nbs/02_dash_example2.ipynb 11
 if __name__ == "__main__":
-    app.run_server(debug=False)
+    #app.run_server(debug=False)
+    from waitress import serve
+    serve(app.server, host="0.0.0.0", port=8050, threads=2)
 

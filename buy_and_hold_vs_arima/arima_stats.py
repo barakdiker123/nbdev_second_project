@@ -69,7 +69,7 @@ def create_auto_arima_prediction(series_data, prediction_depth=30):
 
 
 # %% ../nbs/00_core.ipynb 13
-def create_auto_arima_prediction_future_2(series_data,future=40):
+def create_auto_arima_prediction_future_2(series_data,future=100):
     temp_series = pd.Series(series_data)
     temp_series=pd.concat([temp_series,pd.Series([None]*future , index=pd.date_range(series_data.index[-1], freq='D', periods=future))])
     auto_pred = create_auto_arima_prediction(temp_series,future)
