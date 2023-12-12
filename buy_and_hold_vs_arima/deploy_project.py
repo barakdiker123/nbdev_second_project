@@ -150,9 +150,8 @@ def update_output(slider_value,country_chosen):
     #concated_data = dff[country][first_date_infer:last_date_infer].copy()
     predication = pd.concat([create_dataframe_with_series(create_auto_arima_prediction_future_2 , dff[country][first_date_infer:last_date_infer].copy()).rename(columns={"High": country, "pred": country +"pred"}) for country in country_chosen])
     #predication.drop(country_chosen, axis=1)
-    #for country in country_chosen:
-    #    predication.drop(country, axis=1)
-    #    predication[country] = dff[country]
+    for country in country_chosen:
+        predication[country + "True"] = dff[country][last_date_infer:]
     fig_global = px.line(
         predication,
         #x="Dates",
