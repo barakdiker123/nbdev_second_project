@@ -17,6 +17,10 @@ import numpy as np
 import dash_bootstrap_components as dbc
 
 
+# %% ../nbs/02_dash_example2.ipynb 3
+from .arima_stats import create_auto_arima_prediction_future_2
+from .arima_stats import create_dataframe_with_series
+
 # %% ../nbs/02_dash_example2.ipynb 7
 #companies = ['AMZN','NFLX','GOOG']
 companies = [
