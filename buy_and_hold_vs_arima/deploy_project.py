@@ -21,6 +21,9 @@ import dash_bootstrap_components as dbc
 # %% ../nbs/02_dash_example2.ipynb 3
 from .arima_stats import create_auto_arima_prediction_future_2
 from .arima_stats import create_dataframe_with_series
+from .arima_stats import top_score
+from .arima_stats import get_top_players
+from .arima_stats import create_dataframe
 
 # %% ../nbs/02_dash_example2.ipynb 7
 #companies = ['AMZN','NFLX','GOOG']
@@ -58,7 +61,7 @@ companies = [
 
 
 
-tickers = [yf.Ticker(ticker).history( start='2020-12-10')['High'].rename(ticker) for ticker in companies]
+tickers = [yf.Ticker(ticker).history( start='2021-12-10')['High'].rename(ticker) for ticker in companies]
 df = pd.concat(tickers, axis=1)
 df
 
@@ -213,9 +216,24 @@ def update_output(slider_value,country_chosen):
     )
     fig_global.add_annotation(x=last_date_infer, text=str(last_date_infer))
     
-    
-    
-    
+    ####################  what stocks to choose 
+    #date = "2022-12-13"
+    date = last_date_infer
+    dict_best_to_invest = top_score(df,date,top=3)
+    total_profit_of_best = sum(dict_best_to_invest.values())
+    print("ARIMA expected profits are: " , total_profit_of_best)
+
+    sum_arima_true = 0 
+    if len(df.loc[date:]) > 30:
+        for series in dict_best_to_invest:
+            print(series) # The Stocks to invest 
+            sum_arima_true += df[series].loc[date:].iloc[30] - df[series].loc[date:].iloc[0]
+        print("ARIMA True profits are :" ,sum_arima_true )
+    df_ta35 = create_dataframe(['TA35.TA'])
+    if len(df_ta35.loc[date:]) > 30:
+        ta35_profit = df_ta35.loc[date:].iloc[30] - df_ta35.loc[date:].iloc[0]
+        print("TA35 Values profits are :" , ta35_profit.item())
+    ####################
     
     return fig_global
 
