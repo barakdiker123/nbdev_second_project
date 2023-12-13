@@ -251,6 +251,6 @@ def update_graph(country_chosen):
 
 # %% ../nbs/02_dash_example2.ipynb 11
 if __name__ == "__main__":
-    #app.run_server(debug=False)
-    serve(app.server, host="0.0.0.0", port=8050, threads=2)
+    app.run_server(debug=False)
+    #serve(app.server, host="0.0.0.0", port=8050, threads=2)
 
