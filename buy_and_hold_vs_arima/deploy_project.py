@@ -13,6 +13,7 @@ from dash import html
 from dash.dependencies import Output, Input
 import plotly.express as px
 import pandas as pd
+from waitress import serve
 import numpy as np
 import dash_bootstrap_components as dbc
 
@@ -245,13 +246,11 @@ def update_graph(country_chosen):
 
 # %% ../nbs/02_dash_example2.ipynb 10
 def run_server(port=8050):
-    from waitress import serve
     serve(app.server, host="0.0.0.0", port=port, threads=2)
 
 
 # %% ../nbs/02_dash_example2.ipynb 11
 if __name__ == "__main__":
     #app.run_server(debug=False)
-    from waitress import serve
     serve(app.server, host="0.0.0.0", port=8050, threads=2)
 
