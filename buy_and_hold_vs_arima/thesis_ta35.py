@@ -21,11 +21,12 @@ def strategy_invest(func, series_data , future = 30):
     for current_date,next_date in zip(change_invest_arr,change_invest_arr[1:]):
         df , relative_diff = get_revenue_arima(create_auto_arima_prediction_future_2 , series_data.loc[:current_date],future=30)
         real_relative_diff = show_all_difference(series_data.loc[current_date:].iloc[0],series_data.loc[next_date:].iloc[0])
+        prev_capital = capital
         if relative_diff > 0:
             capital *= (1+real_relative_diff)
         print("----------------------------------------------------------")
         print("expected relative diff : ", relative_diff)
-        print("Da facto Revenue/loss " , )
+        print("Da facto Revenue/loss " , capital - prev_capital)
         print("current date : " , current_date)
         print("current capital: " , capital)
     
