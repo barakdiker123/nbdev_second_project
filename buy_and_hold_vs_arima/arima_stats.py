@@ -29,7 +29,7 @@ def create_arima_prediction(series):
     auto_arima = pm.auto_arima(series, stepwise=False, seasonal=False)
 
 # %% ../nbs/00_core.ipynb 12
-def create_auto_arima_prediction(series_data, prediction_depth=30):
+def create_auto_arima_prediction(series_data, prediction_depth=30,logger = False):
     """
     Given pandas series return a series with the same indexes (Dates)
     """
@@ -58,7 +58,8 @@ def create_auto_arima_prediction(series_data, prediction_depth=30):
     
     auto_pred = pd.Series([None]*len(df_train) + list(forecast_test_auto))
     auto_pred.index = series_data.index
-    print(auto_arima)
+    if logger:
+        print(auto_arima)
     #df['forecast_auto'] = [None]*len(df_train) + list(forecast_test_auto)
 
     #from statsmodels.tsa.arima.model import ARIMA
@@ -78,8 +79,8 @@ def create_auto_arima_prediction_future_2(series_data,future=60):
     return auto_pred
 
 # %% ../nbs/00_core.ipynb 14
-def create_dataframe_with_series(func , series_data):
-    pred_series = func(series_data)
+def create_dataframe_with_series(func , series_data,future=60):
+    pred_series = func(series_data,future=60)
     df = pd.DataFrame()
     df['pred'] = pred_series
     df['High'] = series_data
