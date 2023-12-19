@@ -44,4 +44,6 @@ d = { 'settings': { 'branch': 'development',
                                                                                                              'buy_and_hold_vs_arima/deploy_project.py'),
                                                       'buy_and_hold_vs_arima.deploy_project.update_output': ( 'dash_example2.html#update_output',
                                                                                                               'buy_and_hold_vs_arima/deploy_project.py')},
-            'buy_and_hold_vs_arima.final_dash_product': {}}}
+            'buy_and_hold_vs_arima.final_dash_product': {},
+            'buy_and_hold_vs_arima.thesis_ta35': { 'buy_and_hold_vs_arima.thesis_ta35.strategy_invest': ( 'thesis.html#strategy_invest',
+                                                                                                          'buy_and_hold_vs_arima/thesis_ta35.py')}}}
