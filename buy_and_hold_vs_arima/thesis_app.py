@@ -76,7 +76,7 @@ companies = [
 
 
 
-tickers = [yf.Ticker(ticker).history( start='2021-12-10')['High'].rename(ticker) for ticker in companies]
+tickers = [yf.Ticker(ticker).history( start='2017-12-10')['High'].rename(ticker) for ticker in companies]
 df = pd.concat(tickers, axis=1)
 df
 
@@ -343,7 +343,8 @@ def update_output(slider_value,country_chosen):
 
 # %% ../nbs/03_thesis_app.ipynb 16
 def run_server():
-    serve(app.server, host="0.0.0.0", port=8051, threads=2)
+    serve(app.server, host="0.0.0.0", port=8103, threads=2)
+    #REMEMBER TO RUN ufw allow 8103 
 
 # %% ../nbs/03_thesis_app.ipynb 17
 #if __name__ == "__main__":
