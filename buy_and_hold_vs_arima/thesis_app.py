@@ -16,7 +16,8 @@ import pandas as pd
 from waitress import serve
 import numpy as np
 import dash_bootstrap_components as dbc
-
+import plotly.graph_objects as go
+import plotly.express as px
 from .arima_stats import create_auto_arima_prediction_future_2
 from .arima_stats import create_dataframe_with_series
 from .arima_stats import top_score
@@ -342,6 +343,6 @@ def update_output(slider_value,country_chosen):
 
 # %% ../nbs/03_thesis_app.ipynb 16
 if __name__ == "__main__":
-    app.run_server(debug=False)
+    #app.run_server(debug=False)
     serve(app.server, host="0.0.0.0", port=8051, threads=2)
 
