@@ -343,5 +343,5 @@ def update_output(slider_value,country_chosen):
 # %% ../nbs/03_thesis_app.ipynb 16
 if __name__ == "__main__":
     app.run_server(debug=False)
-    serve(app.server, host="0.0.0.0", port=8050, threads=2)
+    serve(app.server, host="0.0.0.0", port=8051, threads=2)
 
