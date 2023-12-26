@@ -13,6 +13,14 @@ pip install buy_and_hold_vs_arima
 
 ## How to use
 
+To run the code use the following command 
+
+``` bash 
+python3 -m buy_and_hold_vs_arima.thesis_app 
+```
+
+`
+
 Fill me in please! Don’t forget code examples:
 
 ``` python
