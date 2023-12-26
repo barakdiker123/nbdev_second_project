@@ -346,7 +346,7 @@ def run_server():
     serve(app.server, host="0.0.0.0", port=8051, threads=2)
 
 # %% ../nbs/03_thesis_app.ipynb 17
-if __name__ == "__main__":
-    #app.run_server(debug=False)
-    serve(app.server, host="0.0.0.0", port=8051, threads=2)
+#if __name__ == "__main__":
+#    #app.run_server(debug=False)
+#    serve(app.server, host="0.0.0.0", port=8051, threads=2)
 
