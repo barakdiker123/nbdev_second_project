@@ -32,6 +32,12 @@ def create_arima_prediction(series):
 def create_auto_arima_prediction(series_data, prediction_depth=30,logger = False):
     """
     Given pandas series return a series with the same indexes (Dates)
+    Given a series_data which is of type pd.Series with dates as index 
+    and index/stock value as data 
+    splits the data to before the last 30 values which is named df_train 
+    and the last 30 values which is named df_test
+
+    the arima prediction is based ONLY on df_train (without 30 last values!)
     """
     df = pd.DataFrame()
     df['High'] = series_data
@@ -49,9 +55,9 @@ def create_auto_arima_prediction(series_data, prediction_depth=30,logger = False
     # Doesn't work very well , Trying to Autocreate the arima parameters
     #auto_arima = pm.auto_arima(df_train.to_numpy())
     
-    auto_arima = pm.auto_arima(df_train.to_numpy(), start_p=1, start_q=1,d=0, max_p=5, max_q=5,
-                      out_of_sample_size=10, suppress_warnings=True,
-                      stepwise=True, error_action='ignore')
+    auto_arima = pm.auto_arima(df_train.dropna().to_numpy(), start_p=1, start_q=1,d=0, max_p=5, max_q=5,
+                      out_of_sample_size=10, suppress_warnings=True,n_jobs= 1,method='nm',#seasonal=True,
+                      stepwise=False, error_action='ignore')
     
     forecast_test_auto = auto_arima.predict(n_periods=len(df_test))
   

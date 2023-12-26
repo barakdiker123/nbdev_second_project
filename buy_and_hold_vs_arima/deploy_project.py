@@ -69,8 +69,9 @@ for a in df.columns:
     print(a)
     
 df[['LUMI.TA','ICL.TA']]
+df['LUMI.TA'][df['LUMI.TA'] > 3000]
 
-# %% ../nbs/02_dash_example2.ipynb 8
+# %% ../nbs/02_dash_example2.ipynb 9
 # http://127.0.0.1:8050/
 
 #df = px.data.gapminder()
@@ -85,7 +86,7 @@ app.layout = html.Div(
     [
         dcc.Markdown('''
         # Comparing Arima model and Buy and Hold strategy
-        This is final project of master's degree written by yeshurun ben avraham 
+        This is final project of master's degree in Haifa University 
         '''),
         dcc.Dropdown(
             id="dpdn2",
@@ -134,7 +135,7 @@ app.layout = html.Div(
         dbc.Row(
             # Values is the initial values
             # first arg and second arg are the overall range , third is the jumps 
-                dcc.RangeSlider(0, len(df) - 1 , 1, count=1, value=[0, len(df) - 1] , id="range-inference") 
+                dcc.RangeSlider(0, len(df) - 1 , 1, count=1, value=[(len(df) - 1)*3//4, len(df) - 1] , id="range-inference") 
         ),
         dbc.Row(
             dcc.Graph(
@@ -262,12 +263,12 @@ def update_graph(country_chosen):
 
 
 
-# %% ../nbs/02_dash_example2.ipynb 10
+# %% ../nbs/02_dash_example2.ipynb 11
 def run_server(port=8050):
     serve(app.server, host="0.0.0.0", port=port, threads=2)
 
 
-# %% ../nbs/02_dash_example2.ipynb 11
+# %% ../nbs/02_dash_example2.ipynb 12
 if __name__ == "__main__":
     app.run_server(debug=False)
     #serve(app.server, host="0.0.0.0", port=8050, threads=2)
