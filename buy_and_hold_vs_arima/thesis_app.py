@@ -76,7 +76,7 @@ companies = [
 
 
 
-tickers = [yf.Ticker(ticker).history( start='2017-12-10')['High'].rename(ticker) for ticker in companies]
+tickers = [yf.Ticker(ticker).history( start='2019-12-10')['High'].rename(ticker) for ticker in companies]
 df = pd.concat(tickers, axis=1)
 df
 
@@ -311,14 +311,15 @@ def update_output(slider_value,country_chosen):
         ## Overall profit in percentage with buy and hold : {1}
         ## How many months the algorithm decide to invest : {2}
         ## Total month of the entire period : {3}
-        ## How many months we had profit : {4}
+        
         """
+        ## How many months we had profit : {4}
         summary_report = template.format(
             capital_arr[-1] - 100, 
             (dff[country].loc[last_date_infer:].iloc[0] - dff[country].loc[first_date_infer:].iloc[0])/dff[country].loc[first_date_infer:].iloc[0] *100,
             count_invested_months , 
             total_months ,
-            did_profit.value_counts()[True] ,
+            #did_profit.value_counts()[True] ,
         )
         #summary_report += '''## Overall profit in percentage with arima :''' + str(capital_arr[-1] - 100 ) + '''\\n'''
         #summary_report += '''## Overall profit in percentage with buy and hold :''' + str(dff[country].loc[last_date_infer:].iloc[0] - dff[country].loc[first_date_infer:].iloc[0]) + '''\\n'''
