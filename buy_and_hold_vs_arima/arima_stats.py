@@ -55,7 +55,7 @@ def create_auto_arima_prediction(series_data, prediction_depth=30,logger = False
     # Doesn't work very well , Trying to Autocreate the arima parameters
     #auto_arima = pm.auto_arima(df_train.to_numpy())
     
-    auto_arima = pm.auto_arima(df_train.dropna().to_numpy(), start_p=1, start_q=1,d=0, max_p=5, max_q=5,
+    auto_arima = pm.auto_arima(df_train.dropna().to_numpy(), start_p=1, start_q=1,d=0, max_p=8, max_q=8,
                       out_of_sample_size=10, suppress_warnings=True,n_jobs= 1,method='nm',#seasonal=True,
                       stepwise=False, error_action='ignore')
     

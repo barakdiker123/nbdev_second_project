@@ -278,7 +278,8 @@ def update_output(slider_value,country_chosen):
     for country in country_chosen:
         #country = country_chosen[0] # select TA35.TA
         #print(dff[country][first_date_infer:last_date_infer])
-        count_invested_months , total_months , expected_diff_arr , revenue_loss_diff_arr , current_date_arr , capital_arr = strategy_invest(create_auto_arima_prediction_future_2 , dff[country].copy(),future = 30,start=first_date_infer, end= last_date_infer)
+        #count_invested_months , total_months , expected_diff_arr , revenue_loss_diff_arr , current_date_arr , capital_arr = strategy_invest(create_auto_arima_prediction_future_2 , dff[country].copy(),future = 30,start=first_date_infer, end= last_date_infer)
+        count_invested_months , total_months , expected_diff_arr , revenue_loss_diff_arr , current_date_arr , capital_arr = strategy_invest(create_auto_arima_prediction_future_2 , dff[country][first_date_infer:last_date_infer])
         
         
         invest_or_not = pd.Series(expected_diff_arr , index=current_date_arr).apply(lambda a: a > 0)
@@ -287,10 +288,10 @@ def update_output(slider_value,country_chosen):
         for curr_date in current_date_arr:
             if invest_or_not[curr_date]:
                 fig_global.add_vline(x=curr_date, line_dash="dash", line_color="Red")
-                fig_global.add_annotation(x=curr_date,y=dff[country].loc[curr_date:].iloc[0],textangle=-45, text=str(last_date_infer)[:12] + "invest")
+                fig_global.add_annotation(x=curr_date,y=dff[country].loc[curr_date:].iloc[0],textangle=-45, text=str(curr_date)[:12] + "invest")
             else:
                 fig_global.add_vline(x=curr_date, line_dash="dash", line_color="Green")
-                fig_global.add_annotation(x=curr_date,y=dff[country].loc[curr_date:].iloc[0] ,textangle=-45,text=str(last_date_infer)[:12] + "not invest")
+                fig_global.add_annotation(x=curr_date,y=dff[country].loc[curr_date:].iloc[0] ,textangle=-45,text=str(curr_date)[:12] + "not invest")
         
         seg_fig = go.Figure(
             [

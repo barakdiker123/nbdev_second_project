@@ -40,11 +40,13 @@ def strategy_invest(func, series_data , future = 30,start= '2017-12-31', end= '2
     total_months -> the total number of iteration of invest\not invest months
     capital -> the simulation start with 100 capital and return the last capital in the simulation 
     """
+    skip_index = 90
     count_invested_months , total_months = 0,0
     length_series = len(series_data)
     #change_invest_arr = pd.date_range('2017-12-31', freq="M", periods=5*12 -1) # 5 years in months
-    #change_invest_arr = pd.date_range(start=series_data.index[length_series//4],end=series_data.index[-1] ,freq="M") # 5 years in months
-    change_invest_arr = pd.date_range(start=start,end=end ,freq="M") # 5 years in months
+    #length_series//4
+    change_invest_arr = pd.date_range(start=series_data.index[skip_index + 1],end=series_data.index[-1] ,freq="M") # 5 years in months
+    #change_invest_arr = pd.date_range(start=start,end=end ,freq="M") # 5 years in months
 
     print("barak")
     capital = 100
@@ -55,7 +57,7 @@ def strategy_invest(func, series_data , future = 30,start= '2017-12-31', end= '2
     
     for current_date,next_date in zip(change_invest_arr,change_invest_arr[1:]):
         total_months += 1
-        df , relative_diff = get_revenue_arima(create_auto_arima_prediction_future_2 , series_data.loc[:current_date],future=30)
+        df , relative_diff = get_revenue_arima(create_auto_arima_prediction_future_2 , series_data.loc[:current_date].iloc[-skip_index:],future=30)# Bad decision .iloc[-50:]
         real_relative_diff = show_all_difference(series_data.loc[current_date:].iloc[0],series_data.loc[next_date:].iloc[0])
         prev_capital = capital
         if relative_diff > 0:
