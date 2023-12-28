@@ -76,7 +76,7 @@ companies = [
 
 
 
-tickers = [yf.Ticker(ticker).history( start='2019-12-10')['High'].rename(ticker) for ticker in companies]
+tickers = [yf.Ticker(ticker).history( start='2018-12-10')['High'].rename(ticker) for ticker in companies]
 df = pd.concat(tickers, axis=1)
 df
 
